@@ -4,6 +4,7 @@
       <w>lireddit</w>
       <w>postgresql</w>
       <w>resave</w>
+      <w>urql</w>
     </words>
   </dictionary>
 </component>
