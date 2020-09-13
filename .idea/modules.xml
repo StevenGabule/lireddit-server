@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/lireddit-server.iml" filepath="$PROJECT_DIR$/.idea/lireddit-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../lireddit-web/.idea/lireddit-web.iml" filepath="$PROJECT_DIR$/../lireddit-web/.idea/lireddit-web.iml" />
     </modules>
   </component>
 </project>
