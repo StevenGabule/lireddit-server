@@ -3,8 +3,10 @@
     <words>
       <w>lireddit</w>
       <w>navbar</w>
+      <w>nodemailer</w>
       <w>postgresql</w>
       <w>resave</w>
+      <w>smtp</w>
       <w>urql</w>
     </words>
   </dictionary>

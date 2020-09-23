@@ -15,6 +15,7 @@ import {__prod__, COOKE_NAME} from "./constants";
 import cors from "cors";
 
 const main = async () => {
+
     // @ts-ignore
     const orm = await MikroORM.init(microConfig);
     await orm.getMigrator().up();
