@@ -1,31 +1,53 @@
-import {UsernamePasswordInput} from "./UsernamePasswordInput";
+import { UsernamePasswordInput } from "./UsernamePasswordInput";
 
-export const validateRegister = (options: UsernamePasswordInput) => {
-    if (options.username.length <= 2) {
-        return [
-            {
-                field: 'username',
-                message: 'length must be greater than 2'
-            },
-        ];
-    }
+export const validateRegister = ({
+  username,
+  email,
+  password,
+}: UsernamePasswordInput) => {
+  if (username.length <= 2) {
+    return [
+      {
+        field: "username",
+        message: "length must be greater than 2",
+      },
+    ];
+  }
 
-    if (options.email.length <= 2) {
-        return [
-            {
-                field: 'email',
-                message: 'length must be greater than 2'
-            },
-        ];
-    }
+  if (!email.includes("@")) {
+    return [
+      {
+        field: "email",
+        message: "Invalid email address",
+      },
+    ];
+  }
 
-    if (options.password.length <= 2) {
-        return [
-            {
-                field: 'password',
-                message: 'length must be greater than 2'
-            },
-        ];
-    }
-    return null;
-}
+  if (username.includes("@")) {
+    return [
+      {
+        field: "username",
+        message: "username must not include @ symbol",
+      },
+    ];
+  }
+
+  if (email.length <= 2) {
+    return [
+      {
+        field: "email",
+        message: "length must be greater than 2",
+      },
+    ];
+  }
+
+  if (password.length <= 2) {
+    return [
+      {
+        field: "password",
+        message: "length must be greater than 2",
+      },
+    ];
+  }
+  return null;
+};

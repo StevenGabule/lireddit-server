@@ -99,7 +99,8 @@ let UserResolver = class UserResolver {
             const hashedPassword = yield argon2.hash(options.password);
             let user;
             try {
-                const result = yield em.createQueryBuilder(User_1.User)
+                const result = yield em
+                    .createQueryBuilder(User_1.User)
                     .getKnexQuery()
                     .insert({
                     username: options.username,
@@ -107,16 +108,19 @@ let UserResolver = class UserResolver {
                     password: hashedPassword,
                     created_at: new Date(),
                     updated_at: new Date(),
-                }).returning("*");
+                })
+                    .returning("*");
                 user = result[0];
             }
             catch (e) {
-                if (e.code === '23505') {
+                if (e.code === "23505") {
                     return {
-                        errors: [{
-                                field: 'username',
-                                message: 'username is already taken'
-                            }]
+                        errors: [
+                            {
+                                field: "usernameOrEmail",
+                                message: "username is already taken",
+                            },
+                        ],
                     };
                 }
             }
@@ -126,14 +130,15 @@ let UserResolver = class UserResolver {
     }
     login(usernameOrEmail, password, { em, req }) {
         return __awaiter(this, void 0, void 0, function* () {
-            const user = yield em.findOne(User_1.User, usernameOrEmail.includes('@') ? { email: usernameOrEmail }
+            const user = yield em.findOne(User_1.User, usernameOrEmail.includes("@")
+                ? { email: usernameOrEmail }
                 : { username: usernameOrEmail });
             if (!user) {
                 return {
                     errors: [
                         {
                             field: "username",
-                            message: 'The credentials not found. Please check your credentials.'
+                            message: "The credentials not found. Please check your credentials.",
                         },
                     ],
                 };
@@ -144,14 +149,14 @@ let UserResolver = class UserResolver {
                     errors: [
                         {
                             field: "password",
-                            message: 'The credentials not found. Please check your credentials.'
+                            message: "The credentials not found. Please check your credentials.",
                         },
                     ],
                 };
             }
             req.session.userId = user.id;
             return {
-                user
+                user,
             };
         });
     }
@@ -192,7 +197,7 @@ __decorate([
 ], UserResolver.prototype, "me", null);
 __decorate([
     type_graphql_1.Mutation(() => UserResponse),
-    __param(0, type_graphql_1.Arg('options')),
+    __param(0, type_graphql_1.Arg("options")),
     __param(1, type_graphql_1.Ctx()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [UsernamePasswordInput_1.UsernamePasswordInput, Object]),
